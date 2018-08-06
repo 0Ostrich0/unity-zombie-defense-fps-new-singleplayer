@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 	public AudioClip attackSound;
 	public AudioClip deathSound;
+	public Material deadMaterial;
 	private Animator animator;
 	private AudioSource audioSource;
 	private Chasing chasing;
@@ -36,6 +38,8 @@ public class Enemy : MonoBehaviour {
 
 		animator.SetTrigger("Dead");
 		audioSource.PlayOneShot(deathSound);
+
+		transform.Find("Icon").GetComponent<MeshRenderer>().material = deadMaterial;
 		
 		Destroy(gameObject, 5f);
 	}
